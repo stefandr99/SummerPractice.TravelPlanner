@@ -10,19 +10,19 @@ using Models.User.DTO;
 
 public class UserService(IUserRepository userRepository) : IUserService
 {
-    public async Task<Result> AuthenticateAsync(string username, string password)
+    public async Task<Result<UserIdentifictionDTO>> AuthenticateAsync(string username, string password)
     {
         var user = await userRepository.GetUserByUsernameAsync(username);
 
         if (user == null || user.Password != this.EncryptPassword(password))
         {
-            return new ErrorResult("Authentication failed");
+            return new ErrorResult<UserIdentifictionDTO>("Authentication failed");
         }
 
-        return new SuccessResult();
+        return new SuccessResult<UserIdentifictionDTO>(new UserIdentifictionDTO { Id = user.Id });
     }
 
-    public async Task<Result> RegisterAsync(string username, string password, string email)
+    public async Task<Result<UserIdentifictionDTO>> RegisterAsync(string username, string password, string email)
     {
         var existingUser = await userRepository.GetUserByUsernameAsync(username);
 
@@ -41,10 +41,10 @@ public class UserService(IUserRepository userRepository) : IUserService
             IsEmailVerified = false
         };
 
-        await userRepository.AddUserAsync(user);
+        var entityId = await userRepository.AddUserAsync(user);
         await userRepository.SaveAsync();
 
-        return new SuccessResult();
+        return new SuccessResult<UserIdentifictionDTO>(new UserIdentifictionDTO { Id = entityId });
     }
 
     public async Task<Result> VerifyEmailAsync(int userId, string verificationToken)

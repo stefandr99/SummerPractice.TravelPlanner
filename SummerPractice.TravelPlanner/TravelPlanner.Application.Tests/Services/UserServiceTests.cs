@@ -201,5 +201,4 @@
             result.Data.Username.Should().Be("testuser");
         }
     }
-
 }

@@ -1,9 +1,9 @@
 ﻿namespace TravelPlanner.Application.Models.TravelPlan.DTO
 {
-    public class TravelPlanPreviewDTO
-    {
-        public int Id { get; set; }
+    using Common;
 
+    public class TravelPlanPreviewDTO : BaseDTO
+    {
         public string Name { get; set; }
 
         public string Country { get; set; }

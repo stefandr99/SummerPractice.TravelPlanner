@@ -1,9 +1,9 @@
 ﻿namespace TravelPlanner.Application.Models.User.DTO
 {
-    public class UserDTO
-    {
-        public int Id { get; set; }
+    using Common;
 
+    public class UserDTO : BaseDTO
+    {
         public string Username { get; set; }
 
         public string Email { get; set; }
