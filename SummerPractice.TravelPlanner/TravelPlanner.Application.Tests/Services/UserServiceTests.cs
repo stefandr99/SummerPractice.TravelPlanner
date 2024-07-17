@@ -38,7 +38,7 @@
             var result = await this._userService.AuthenticateAsync(username, password);
 
             // Assert
-            result.Should().BeOfType<SuccessResult>();
+            result.Should().BeOfType<SuccessResult<UserIdentifictionDTO>>();
         }
 
         [Fact]
@@ -54,8 +54,8 @@
             var result = await this._userService.AuthenticateAsync(username, password);
 
             // Assert
-            result.Should().BeOfType<ErrorResult>();
-            ((ErrorResult)result).Message.Should().Be("Authentication failed");
+            result.Should().BeOfType<ErrorResult<UserIdentifictionDTO>>();
+            ((ErrorResult<UserIdentifictionDTO>)result).Message.Should().Be("Authentication failed");
         }
 
         [Fact]
@@ -73,8 +73,8 @@
             var result = await this._userService.AuthenticateAsync(username, password);
 
             // Assert
-            result.Should().BeOfType<ErrorResult>();
-            ((ErrorResult)result).Message.Should().Be("Authentication failed");
+            result.Should().BeOfType<ErrorResult<UserIdentifictionDTO>>();
+            ((ErrorResult<UserIdentifictionDTO>)result).Message.Should().Be("Authentication failed");
         }
 
         [Fact]
@@ -109,7 +109,7 @@
             var result = await this._userService.RegisterAsync(username, password, email);
 
             // Assert
-            result.Should().BeOfType<SuccessResult>();
+            result.Should().BeOfType<SuccessResult<UserIdentifictionDTO>>();
             await this._userRepository.Received(1).AddUserAsync(Arg.Any<User>());
             await this._userRepository.Received(1).SaveAsync();
         }
