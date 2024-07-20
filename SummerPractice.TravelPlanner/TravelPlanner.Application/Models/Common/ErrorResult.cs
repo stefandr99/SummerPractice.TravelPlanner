@@ -8,11 +8,13 @@
             this.Message = message;
         }
     }
+
     public class ErrorResult<T> : Result<T>
     {
-        public ErrorResult(T data) : base(default)
+        public ErrorResult(string message) : base(default!)
         {
             this.IsSuccess = false;
+            this.Message = message;
         }
     }
 }

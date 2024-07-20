@@ -22,9 +22,11 @@ public class UserRepository(ApplicationDbContext context) : IUserRepository
         return await context.Users.FirstOrDefaultAsync(u => u.Username == usernameOrEmail || u.Email == usernameOrEmail);
     }
 
-    public async Task AddUserAsync(User user)
+    public async Task<int> AddUserAsync(User user)
     {
-        await context.Users.AddAsync(user);
+        var addedUser = await context.Users.AddAsync(user);
+
+        return addedUser.Entity.Id;
     }
 
     public async Task SaveAsync()

@@ -10,7 +10,7 @@ public interface IUserRepository
 
     Task<User?> GetUserByUsernameOrEmailAsync(string usernameOrEmail);
 
-    Task AddUserAsync(User user);
+    Task<int> AddUserAsync(User user);
 
     Task SaveAsync();
 }

@@ -5,9 +5,9 @@ using Models.User.DTO;
 
 public interface IUserService
 {
-    Task<Result> AuthenticateAsync(string username, string password);
+    Task<Result<UserIdentifictionDTO>> AuthenticateAsync(string username, string password);
 
-    Task<Result> RegisterAsync(string username, string password, string email);
+    Task<Result<UserIdentifictionDTO>> RegisterAsync(string username, string password, string email);
 
     Task<Result<UserDTO>> GetUserByIdAsync(int id);
 

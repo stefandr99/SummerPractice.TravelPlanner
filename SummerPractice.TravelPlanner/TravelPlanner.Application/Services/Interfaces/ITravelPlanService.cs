@@ -2,8 +2,8 @@
 {
     using Domain.Entities;
     using Models.Common;
-    using TravelPlanner.Application.Models.TravelPlan.DTO;
-    using TravelPlanner.Application.Models.TravelPlan.Requests;
+    using Models.TravelPlan.DTO;
+    using Models.TravelPlan.Requests;
 
     public interface ITravelPlanService
     {

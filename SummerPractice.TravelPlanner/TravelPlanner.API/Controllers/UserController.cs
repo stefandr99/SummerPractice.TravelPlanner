@@ -11,9 +11,9 @@ public class UserController(IUserService userService) : BaseController
     {
         try
         {
-            await userService.RegisterAsync(model.Username, model.Password, model.Email);
+            var result = await userService.RegisterAsync(model.Username, model.Password, model.Email);
 
-            return this.Ok();
+            return this.Ok(result);
         }
         catch (ArgumentException ex)
         {
@@ -29,7 +29,7 @@ public class UserController(IUserService userService) : BaseController
         if (!result.IsSuccess)
             return this.Unauthorized();
 
-        return this.Ok();
+        return this.Ok(result);
     }
 
     [HttpPost("verify-email")]
@@ -37,9 +37,9 @@ public class UserController(IUserService userService) : BaseController
     {
         try
         {
-            await userService.VerifyEmailAsync(userId, model.VerificationToken);
+            var result = await userService.VerifyEmailAsync(userId, model.VerificationToken);
 
-            return this.Ok();
+            return this.Ok(result);
         }
         catch (ArgumentException ex)
         {
@@ -57,7 +57,7 @@ public class UserController(IUserService userService) : BaseController
             return this.NotFound($"User with id: {id} was not found");
         }
 
-        return this.Ok(result.Data);
+        return this.Ok(result);
     }
 
     [HttpGet("search")]
@@ -70,6 +70,6 @@ public class UserController(IUserService userService) : BaseController
             return this.NotFound();
         }
 
-        return this.Ok(result.Data);
+        return this.Ok(result);
     }
 }
