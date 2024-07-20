@@ -4,7 +4,7 @@
 
     public interface ITravelPlanRepository
     {
-        Task<TravelPlan> GetTravelPlanByIdAsync(int id);
+        Task<TravelPlan?> GetTravelPlanByIdAsync(int id);
 
         Task<IEnumerable<TravelPlan>> GetAllTravelPlansAsync();
 

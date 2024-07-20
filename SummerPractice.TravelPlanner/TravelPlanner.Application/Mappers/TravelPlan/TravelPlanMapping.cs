@@ -14,11 +14,11 @@
                 Id = travelPlan.Id,
                 Name = travelPlan.Name,
                 Country = travelPlan.Country,
-                City = travelPlan.City,
-                DurationInDays = travelPlan.DurationInDays,
-                StartDate = travelPlan.StartDate,
-                AuthorName = travelPlan.User.Username,
-                Activities = travelPlan.Activities.Select(ActivityMapping.ToActivityDTO)
+                //City = travelPlan.City,
+                //DurationInDays = travelPlan.DurationInDays,
+                //StartDate = travelPlan.StartDate,
+                //AuthorName = travelPlan.User.Username,
+                //Activities = travelPlan.Activities.Select(ActivityMapping.ToActivityDTO)
             };
         }
 

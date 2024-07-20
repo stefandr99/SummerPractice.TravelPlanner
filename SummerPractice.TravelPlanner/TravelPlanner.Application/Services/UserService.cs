@@ -73,6 +73,11 @@ public class UserService(IUserRepository userRepository) : IUserService
     {
         var user = await userRepository.GetUserByIdAsync(id);
 
+        if (user == null)
+        {
+            return new ErrorResult<UserDTO>(null);
+        }
+
         var userDto = UserMapping.ToUserDTO(user);
 
         return new SuccessResult<UserDTO>(userDto);

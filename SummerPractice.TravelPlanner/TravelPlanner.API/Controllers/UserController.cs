@@ -54,7 +54,7 @@ public class UserController(IUserService userService) : BaseController
 
         if (!result.IsSuccess)
         {
-            return this.NotFound();
+            return this.NotFound($"User with id: {id} was not found");
         }
 
         return this.Ok(result);
